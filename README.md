@@ -6,4 +6,5 @@ The Host, port, id of the virtual server and the credentials for the query login
 After login it sends a request to a coronavirus-rest-api on https://corona.lmao.ninja/countries and searches for the country data  
 The REST-Api gets the data from https://www.worldometers.info/coronavirus/  
 3 channels are then edited using the data to set the channel name  
+Before running the bot those 3 channels have to be created first and need to have the same name which the script is searching for (ts3conn.channelfind command)  
 repeats every 300 seconds (5 minutes)  
