@@ -11,23 +11,20 @@ if __name__ == "__main__":
     from def_param import *
     while True:
         try:
-            response = requests.get('https://corona.lmao.ninja/countries')
-            countryArray = json.loads(response.text)
+            response = requests.get('https://corona.lmao.ninja/v2/countries/Austria')
+            responseData = json.loads(response.text)
             infectedAmount = 0
             infectedAmountNew = 0
             deadAmount = 0
             deadAmountNew = 0
             recovered = 0
             critical = 0
-            for country in countryArray:
-                if country["country"] == "Austria":
-                    #print(country)
-                    infectedAmount = country["cases"]
-                    infectedAmountNew = country["todayCases"]
-                    deadAmount = country["deaths"]
-                    deadAmountNew = country["todayDeaths"]
-                    recovered = country["recovered"]
-                    critical = country["critical"]
+            infectedAmount = responseData["cases"]
+            infectedAmountNew = responseData["todayCases"]
+            deadAmount = responseData["deaths"]
+            deadAmountNew = responseData["todayDeaths"]
+            recovered = responseData["recovered"]
+            critical = responseData["critical"]
             try:
                 with ts3.query.TS3Connection(HOST, PORT) as ts3conn:
                     ts3conn.login(client_login_name=USER, client_login_password=PASS)
