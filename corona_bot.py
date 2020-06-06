@@ -19,7 +19,7 @@ if __name__ == "__main__":
             deadAmountNew = 0
             recovered = 0
             critical = 0
-            infectedAmount = responseData["cases"]
+            infectedAmount = responseData["active"]
             infectedAmountNew = responseData["todayCases"]
             deadAmount = responseData["deaths"]
             deadAmountNew = responseData["todayDeaths"]
@@ -29,14 +29,14 @@ if __name__ == "__main__":
                 with ts3.query.TS3Connection(HOST, PORT) as ts3conn:
                     ts3conn.login(client_login_name=USER, client_login_password=PASS)
                     ts3conn.use(sid=SID)
-                    respInf = ts3conn.channelfind(pattern="Infizierte")
+                    respInf = ts3conn.channelfind(pattern="Aktiv Infizierte")
                     respTote = ts3conn.channelfind(pattern="Tote")
                     respRecovered = ts3conn.channelfind(pattern="Geheilte")
 
                     now = datetime.now()
                     date_time = "Letzte aktualisierung am: " + now.strftime("%m/%d/%Y, %H:%M:%S")
                     try:
-                        ts3conn.channeledit(cid=respInf.parsed[0]["cid"], channel_name="[cspacer]Infizierte: " + str(infectedAmount) + " (+" + str(infectedAmountNew) + ")", channel_description=date_time)
+                        ts3conn.channeledit(cid=respInf.parsed[0]["cid"], channel_name="[cspacer]Aktiv Infizierte: " + str(infectedAmount) + " (+" + str(infectedAmountNew) + ")", channel_description=date_time)
                     except ts3.query.TS3QueryError as ex:
                         print("Infected amount is same: " + str(ex))
                     try:
