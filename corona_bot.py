@@ -34,7 +34,7 @@ if __name__ == "__main__":
                     respRecovered = ts3conn.channelfind(pattern="Geheilte")
 
                     now = datetime.now()
-                    date_time = "Letzte aktualisierung am: " + now.strftime("%m/%d/%Y, %H:%M:%S")
+                    date_time = "Letzte aktualisierung am: " + now.strftime("%m/%d/%Y, %H:%M:%S") + "  Source Code: https://github.com/Klompara/TeamspeakCoronaBot"
                     try:
                         ts3conn.channeledit(cid=respInf.parsed[0]["cid"], channel_name="[cspacer]Aktiv Infizierte: " + str(infectedAmount) + " (+" + str(infectedAmountNew) + ")", channel_description=date_time)
                     except ts3.query.TS3QueryError as ex:
